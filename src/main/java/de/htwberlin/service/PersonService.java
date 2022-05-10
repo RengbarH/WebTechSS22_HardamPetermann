@@ -1,10 +1,11 @@
 package de.htwberlin.service;
 
-import org.springframework.stereotype.Service;
+
 import de.htwberlin.persistence.PersonEntity;
 import de.htwberlin.persistence.PersonRepository;
 import de.htwberlin.web.api.Person;
 import de.htwberlin.web.api.PersonManipulationRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,9 +44,9 @@ public class PersonService {
         }
 
         var personEntity = personEntityOptional.get();
-        personEntity.setFirstname(request.getFirstName());
-        personEntity.setLastname(request.getLastName());
-        personEntity.setVaccinated(request.getDebts());
+        personEntity.setFirstName(request.getFirstName());
+        personEntity.setLastName(request.getLastName());
+        personEntity.setDebts(request.getDebts());
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);
     }

@@ -1,10 +1,9 @@
 package de.htwberlin.persistence;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity(name = "persons")
+@Entity(name = "Persons")
 public class PersonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,8 +51,8 @@ public class PersonEntity {
         return debts;
     }
 
-    public void setDebts(String debts) {
-        this.debts = new BigDecimal(debts);
+    public void setDebts(BigDecimal debts) {
+        this.debts = debts;
     }
 }
 
