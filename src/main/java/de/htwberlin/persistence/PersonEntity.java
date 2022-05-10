@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 @Entity(name = "Persons")
 public class PersonEntity {
+    //2.te erstellen: erste Entity(ID,Vorname,Nachname), zweite (ID, Betrag, eingetragen am
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
