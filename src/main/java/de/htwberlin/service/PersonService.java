@@ -64,7 +64,7 @@ public class PersonService {
                 personEntity.getId(),
                 personEntity.getFirstname(),
                 personEntity.getLastname(),
-                personEntity.isVaccinated()
+                personEntity.isDebts()
         );
     }
 }
