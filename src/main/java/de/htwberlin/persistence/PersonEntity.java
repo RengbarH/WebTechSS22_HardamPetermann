@@ -11,20 +11,20 @@ public class PersonEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "firstname", nullable = false)
-    private String firstname;
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
 
-    @Column(name = "lastname", nullable = false)
-    private String lastname;
+    @Column(name = "lastName", nullable = false)
+    private String lastName;
 
     @Column(name = "debts")
     private BigDecimal debts;
 
     protected PersonEntity() {}
 
-    public PersonEntity(String firstname, String lastname, BigDecimal debts) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public PersonEntity(String firstName, String lastName, BigDecimal debts) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.debts = debts;
     }
 
@@ -32,23 +32,23 @@ public class PersonEntity {
         return id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public BigDecimal isDebts() {
+    public BigDecimal getDebts() {
         return debts;
     }
 

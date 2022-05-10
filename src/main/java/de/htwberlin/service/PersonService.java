@@ -62,9 +62,9 @@ public class PersonService {
     private Person transformEntity(PersonEntity personEntity){
         return new Person(
                 personEntity.getId(),
-                personEntity.getFirstname(),
-                personEntity.getLastname(),
-                personEntity.isDebts()
+                personEntity.getFirstName(),
+                personEntity.getLastName(),
+                personEntity.getDebts()
         );
     }
 }
