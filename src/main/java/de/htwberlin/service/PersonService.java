@@ -31,7 +31,7 @@ public class PersonService {
     }
 
     public Person create(PersonManipulationRequest request) {
-        var personEntity = new PersonEntity(request.getFirstname(), request.getLastname(), request.getDebts());
+        var personEntity = new PersonEntity(request.getFirstName(), request.getLastName(), request.getDebts());
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);
     }
@@ -43,8 +43,8 @@ public class PersonService {
         }
 
         var personEntity = personEntityOptional.get();
-        personEntity.setFirstname(request.getFirstname());
-        personEntity.setLastname(request.getLastname());
+        personEntity.setFirstname(request.getFirstName());
+        personEntity.setLastname(request.getLastName());
         personEntity.setVaccinated(request.getDebts());
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);

@@ -3,30 +3,30 @@ package de.htwberlin.web.api;
 import java.math.BigDecimal;
 
 public class PersonManipulationRequest {
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private BigDecimal debts;
 
-    public PersonManipulationRequest(String firstname, String lastname, BigDecimal debts) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public PersonManipulationRequest(String firstName, String lastName, BigDecimal debts) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.debts = debts;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public BigDecimal getDebts() {
