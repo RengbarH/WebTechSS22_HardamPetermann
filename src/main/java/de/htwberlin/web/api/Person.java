@@ -9,10 +9,10 @@ public class Person {
     private String lastName;
     private BigDecimal debts;
 
-    public Person(long id, String firstname, String lastname, BigDecimal debts) {
+    public Person(long id, String firstName, String lastName, BigDecimal debts) {
         this.id = id;
-        this.firstName = firstname;
-        this.lastName = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.debts = debts;
     }
 

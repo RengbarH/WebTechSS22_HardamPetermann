@@ -18,14 +18,14 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public List<Person> findAll(){
+    public List<Person> findAll() {
         List<PersonEntity> persons = personRepository.findAll();
         return persons.stream()
                 .map(this::transformEntity)
                 .collect(Collectors.toList());
     }
 
-    public Person findById(long id){
+    public Person findById(long id) {
         var personEntity = personRepository.findById(id);
         return personEntity.map(this::transformEntity).orElse(null);
     }
@@ -38,7 +38,7 @@ public class PersonService {
 
     public Person update(Long id, PersonManipulationRequest request) {
         var personEntityOptional = personRepository.findById(id);
-        if(personEntityOptional.isEmpty()){
+        if (personEntityOptional.isEmpty()) {
             return null;
         }
 
@@ -50,7 +50,7 @@ public class PersonService {
         return transformEntity(personEntity);
     }
 
-    public boolean deleteById(Long id){
+    public boolean deleteById(Long id) {
         if (!personRepository.existsById(id)) {
             return false;
         }
@@ -59,7 +59,7 @@ public class PersonService {
         return true;
     }
 
-    private Person transformEntity(PersonEntity personEntity){
+    private Person transformEntity(PersonEntity personEntity) {
         return new Person(
                 personEntity.getId(),
                 personEntity.getFirstName(),
