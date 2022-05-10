@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PersonRepository {
+public interface PersonRepository extends JpaRepository {
 
     List<PersonEntity> findAllByFirstname(String firstname);
 
