@@ -1,4 +1,4 @@
-package de.htwberlin.persistence;
+package de.htwberlin.web.persistence;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

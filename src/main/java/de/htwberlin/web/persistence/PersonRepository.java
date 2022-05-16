@@ -1,4 +1,4 @@
-package de.htwberlin.persistence;
+package de.htwberlin.web.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

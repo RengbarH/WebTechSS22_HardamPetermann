@@ -1,6 +1,6 @@
 package de.htwberlin.web;
 
-import de.htwberlin.service.PersonService;
+import de.htwberlin.web.service.PersonService;
 import de.htwberlin.web.api.Person;
 import de.htwberlin.web.api.PersonManipulationRequest;
 import org.springframework.http.ResponseEntity;

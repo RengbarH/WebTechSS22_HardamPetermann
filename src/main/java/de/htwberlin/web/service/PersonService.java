@@ -1,8 +1,8 @@
-package de.htwberlin.service;
+package de.htwberlin.web.service;
 
 
-import de.htwberlin.persistence.PersonEntity;
-import de.htwberlin.persistence.PersonRepository;
+import de.htwberlin.web.persistence.PersonEntity;
+import de.htwberlin.web.persistence.PersonRepository;
 import de.htwberlin.web.api.Person;
 import de.htwberlin.web.api.PersonManipulationRequest;
 import org.springframework.stereotype.Service;
