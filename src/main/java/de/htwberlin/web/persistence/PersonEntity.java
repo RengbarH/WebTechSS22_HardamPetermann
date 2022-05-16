@@ -3,7 +3,7 @@ package de.htwberlin.web.persistence;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity(name = "Persons")
+@Entity(name = "persons")
 public class PersonEntity {
     //2.te erstellen: erste Entity(ID,Vorname,Nachname), zweite (ID, Betrag, eingetragen am
     @Id
