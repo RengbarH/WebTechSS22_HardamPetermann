@@ -3,6 +3,7 @@ package de.htwberlin.web.service;
 
 import de.htwberlin.web.api.Person;
 import de.htwberlin.web.api.PersonManipulationRequest;
+import de.htwberlin.web.persistence.DebtsEntity;
 import de.htwberlin.web.persistence.PersonEntity;
 import de.htwberlin.web.persistence.PersonRepository;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,6 @@ public class PersonService {
 
     public Person create(PersonManipulationRequest request) {
         String uuiIdentifier = UUID.randomUUID().toString();
-        // ToDo: add id tp personentity constructor
         var personEntity = new PersonEntity(request.getFirstName(), request.getLastName(), uuiIdentifier);
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);
@@ -67,7 +67,8 @@ public class PersonService {
                 personEntity.getId(),
                 personEntity.getFirstName(),
                 personEntity.getLastName(),
-                personEntity.getIdentifier()
+                personEntity.getIdentifier(),
+                personEntity.getDebts().stream().map(DebtsEntity::getId).collect(Collectors.toList())
         );
     }
 }

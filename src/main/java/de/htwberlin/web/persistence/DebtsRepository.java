@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DebtsRepository extends JpaRepository<DebtsEntity, Long> {
 
-
+    //List<DebtsEntity> findAllByGlaeubiger(Long id);
+    //List<DebtsEntity> findAllByGlaeubiger(PersonEntity person);
 }

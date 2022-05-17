@@ -1,19 +1,22 @@
 package de.htwberlin.web.api;
 
+import java.util.List;
+
 public class Person {
 
     private long id;
     private String firstName;
     private String lastName;
-
     private String identifier;
+    private List<Long> debtId;
 
 
-    public Person(long id, String firstName, String lastName, String identifier) {
+    public Person(long id, String firstName, String lastName, String identifier, List<Long> debtId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.identifier = identifier;
+        this.debtId = debtId;
     }
 
     public long getId() {
@@ -46,5 +49,13 @@ public class Person {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
+    }
+
+    public List<Long> getDebtId() {
+        return debtId;
+    }
+
+    public void setDebtId(List<Long> debtId) {
+        this.debtId = debtId;
     }
 }

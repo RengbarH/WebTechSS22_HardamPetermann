@@ -1,10 +1,11 @@
 package de.htwberlin.web.persistence;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "persons")
 public class PersonEntity {
-    //2.te erstellen: erste Entity(ID,Vorname,Nachname), zweite (ID, Betrag, eingetragen am
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -18,6 +19,9 @@ public class PersonEntity {
 
     @Column(name = "identifier", nullable = false)
     private String identifier;
+
+    @OneToMany(mappedBy = "glaeubiger", fetch = FetchType.EAGER)
+    private List<DebtsEntity> debts = new ArrayList<>();
 
     protected PersonEntity() {}
 
@@ -53,6 +57,14 @@ public class PersonEntity {
 
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
+    }
+
+    public List<DebtsEntity> getDebts() {
+        return debts;
+    }
+
+    public void setDebts(List<DebtsEntity> debts) {
+        this.debts = debts;
     }
 }
 
