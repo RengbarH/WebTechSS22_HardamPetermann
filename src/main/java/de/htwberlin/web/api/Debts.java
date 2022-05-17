@@ -1,39 +1,28 @@
-package de.htwberlin.web.persistence;
+package de.htwberlin.web.api;
 
-
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity(name = "debts")
-public class DebtsEntity {
+public class Debts {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
-
-    @Column(name = "debtor_first_name", nullable = false)
     private String debtorFirstName;
-
-    @Column(name = "debts", nullable = false)
     private BigDecimal debts;
-
-    @Column(name = "date_of_debt")
     private Date dateOfDebt;
 
-    protected DebtsEntity() {
-    }
-
-    public DebtsEntity(String debtorFirstName, BigDecimal debts, Date dateOfDebt) {
-        this.debtorFirstName = debtorFirstName;
+    public Debts(Long id, String debtor, BigDecimal debts, Date dateOfDebt) {
+        this.id = id;
+        this.debtorFirstName = debtor;
         this.debts = debts;
         this.dateOfDebt = dateOfDebt;
     }
 
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDebtorFirstName() {
