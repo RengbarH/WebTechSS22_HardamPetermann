@@ -36,7 +36,29 @@ public class DebtService {
         return transformEntity(debtsEntity);
     }
 
-    // deleteByName und Id und update fehlt
+    public Debts update(Long id, DebtsManipulationRequest request) {
+        var debtsEntityOptional = debtsRepository.findById(id);
+        if (debtsEntityOptional.isEmpty()) {
+            return null;
+        }
+        var debtsEntity = debtsEntityOptional.get();
+        debtsEntity.setDebtorFirstName(request.getDebtorFirstName());
+        debtsEntity.setDebts(request.getDebts());
+        //debtsEntity.getDateOfDebt(request.getDateOfDebt()); <- das braucht man nicht, da sich das Datum nicht veraendert
+        debtsEntity = debtsRepository.save(debtsEntity);
+
+        return transformEntity(debtsEntity);
+    }
+
+    public boolean deleteById(Long id) {
+        if (!debtsRepository.existsById(id)) {
+            return false;
+        }
+        debtsRepository.deleteById(id);
+        return true;
+    }
+
+    // update by name fehlt
 
     private Debts transformEntity(DebtsEntity debtsEntity) {
         return new Debts(
