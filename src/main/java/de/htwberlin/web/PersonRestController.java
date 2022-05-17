@@ -31,10 +31,10 @@ public class PersonRestController {
     }
 
     @PostMapping(path = "/api/v1/persons")
-    public ResponseEntity<Void> createPerson(@RequestBody PersonManipulationRequest request) throws URISyntaxException {
+    public ResponseEntity<Person> createPerson(@RequestBody PersonManipulationRequest request) throws URISyntaxException {
         var person = personService.create(request);
         URI uri = new URI("/api/v1/persons/" + person.getId());
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(person);
     }
 
     @PutMapping(path = "/api/v1/persons/{id}")
@@ -48,5 +48,4 @@ public class PersonRestController {
         boolean successful = personService.deleteById(id);
         return successful ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
-
 }

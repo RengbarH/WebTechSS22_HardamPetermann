@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
+@RestController
 public class DebtsRestController {
 
     private final DebtService debtService;

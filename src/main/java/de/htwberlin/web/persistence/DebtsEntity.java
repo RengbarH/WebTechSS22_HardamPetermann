@@ -29,12 +29,12 @@ public class DebtsEntity {
     protected DebtsEntity() {
     }
 
-    public DebtsEntity(String debtorFirstName, BigDecimal debts, Date dateOfDebt) {
+    public DebtsEntity(String debtorFirstName, BigDecimal debts, Date dateOfDebt, PersonEntity glaeubiger) {
         this.debtorFirstName = debtorFirstName;
         this.debts = debts;
         this.dateOfDebt = dateOfDebt;
+        this.glaeubiger = glaeubiger;
     }
-
 
     public Long getId() {
         return id;
@@ -62,5 +62,13 @@ public class DebtsEntity {
 
     public void setDateOfDebt(Date dateOfDebt) {
         this.dateOfDebt = dateOfDebt;
+    }
+
+    public PersonEntity getGlaeubiger() {
+        return glaeubiger;
+    }
+
+    public void setGlaeubiger(PersonEntity glaeubiger) {
+        this.glaeubiger = glaeubiger;
     }
 }

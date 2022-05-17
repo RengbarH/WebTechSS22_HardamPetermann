@@ -1,7 +1,6 @@
 package de.htwberlin.web.persistence;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 @Entity(name = "persons")
 public class PersonEntity {
@@ -17,15 +16,15 @@ public class PersonEntity {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "debts")
-    private BigDecimal debts;
+    @Column(name = "identifier", nullable = false)
+    private String identifier;
 
     protected PersonEntity() {}
 
-    public PersonEntity(String firstName, String lastName, BigDecimal debts) {
+    public PersonEntity(String firstName, String lastName, String identifier) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.debts = debts;
+        this.identifier = identifier;
     }
 
     public Long getId() {
@@ -48,12 +47,12 @@ public class PersonEntity {
         this.lastName = lastName;
     }
 
-    public BigDecimal getDebts() {
-        return debts;
+    public String getIdentifier() {
+        return identifier;
     }
 
-    public void setDebts(BigDecimal debts) {
-        this.debts = debts;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 }
 

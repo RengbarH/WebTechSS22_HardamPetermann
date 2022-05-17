@@ -1,19 +1,19 @@
 package de.htwberlin.web.api;
 
-import java.math.BigDecimal;
-
 public class Person {
 
     private long id;
     private String firstName;
     private String lastName;
-    private BigDecimal debts;
 
-    public Person(long id, String firstName, String lastName, BigDecimal debts) {
+    private String identifier;
+
+
+    public Person(long id, String firstName, String lastName, String identifier) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.debts = debts;
+        this.identifier = identifier;
     }
 
     public long getId() {
@@ -40,11 +40,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public BigDecimal getDebts() {
-        return debts;
+    public String getIdentifier() {
+        return identifier;
     }
 
-    public void setDebts(BigDecimal debts) {
-        this.debts = debts;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 }

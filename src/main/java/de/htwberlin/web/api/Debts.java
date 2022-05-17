@@ -10,11 +10,14 @@ public class Debts {
     private BigDecimal debts;
     private Date dateOfDebt;
 
-    public Debts(Long id, String debtor, BigDecimal debts, Date dateOfDebt) {
+    private Long glaeubigerId;
+
+    public Debts(Long id, String debtorFirstName, BigDecimal debts, Date dateOfDebt, Long glaeubigerId) {
         this.id = id;
-        this.debtorFirstName = debtor;
+        this.debtorFirstName = debtorFirstName;
         this.debts = debts;
         this.dateOfDebt = dateOfDebt;
+        this.glaeubigerId = glaeubigerId;
     }
 
     public Long getId() {
@@ -47,5 +50,13 @@ public class Debts {
 
     public void setDateOfDebt(Date dateOfDebt) {
         this.dateOfDebt = dateOfDebt;
+    }
+
+    public Long getGlaeubigerId() {
+        return glaeubigerId;
+    }
+
+    public void setGlaeubigerId(Long glaeubigerId) {
+        this.glaeubigerId = glaeubigerId;
     }
 }

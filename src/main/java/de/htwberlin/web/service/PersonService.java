@@ -1,13 +1,14 @@
 package de.htwberlin.web.service;
 
 
-import de.htwberlin.web.persistence.PersonEntity;
-import de.htwberlin.web.persistence.PersonRepository;
 import de.htwberlin.web.api.Person;
 import de.htwberlin.web.api.PersonManipulationRequest;
+import de.htwberlin.web.persistence.PersonEntity;
+import de.htwberlin.web.persistence.PersonRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +33,9 @@ public class PersonService {
     }
 
     public Person create(PersonManipulationRequest request) {
-        var personEntity = new PersonEntity(request.getFirstName(), request.getLastName(), request.getDebts());
+        String uuiIdentifier = UUID.randomUUID().toString();
+        // ToDo: add id tp personentity constructor
+        var personEntity = new PersonEntity(request.getFirstName(), request.getLastName(), uuiIdentifier);
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);
     }
@@ -46,7 +49,6 @@ public class PersonService {
         var personEntity = personEntityOptional.get();
         personEntity.setFirstName(request.getFirstName());
         personEntity.setLastName(request.getLastName());
-        personEntity.setDebts(request.getDebts());
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);
     }
@@ -65,7 +67,7 @@ public class PersonService {
                 personEntity.getId(),
                 personEntity.getFirstName(),
                 personEntity.getLastName(),
-                personEntity.getDebts()
+                personEntity.getIdentifier()
         );
     }
 }

@@ -1,16 +1,15 @@
 package de.htwberlin.web.api;
 
-import java.math.BigDecimal;
-
 public class PersonManipulationRequest {
     private String firstName;
     private String lastName;
-    private BigDecimal debts;
+    private String identifier;
 
-    public PersonManipulationRequest(String firstName, String lastName, BigDecimal debts) {
+
+    public PersonManipulationRequest(String firstName, String lastName, String identifier) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.debts = debts;
+        this.identifier = identifier;
     }
 
     public String getFirstName() {
@@ -29,11 +28,11 @@ public class PersonManipulationRequest {
         this.lastName = lastName;
     }
 
-    public BigDecimal getDebts() {
-        return debts;
+    public String getIdentifier() {
+        return identifier;
     }
 
-    public void setDebts(BigDecimal debts) {
-        this.debts = debts;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 }
