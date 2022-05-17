@@ -22,6 +22,10 @@ public class DebtsEntity {
     @Column(name = "date_of_debt")
     private Date dateOfDebt;
 
+    @OneToOne
+    @JoinColumn(name = "Glaeubiger_id", referencedColumnName = "id")
+    private PersonEntity glaeubiger;
+
     protected DebtsEntity() {
     }
 
