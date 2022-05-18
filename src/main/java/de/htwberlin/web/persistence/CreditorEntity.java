@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "persons")
-public class PersonEntity {
+@Entity(name = "creditor")
+public class CreditorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -20,12 +20,12 @@ public class PersonEntity {
     @Column(name = "identifier", nullable = false)
     private String identifier;
 
-    @OneToMany(mappedBy = "glaeubiger", fetch = FetchType.EAGER)
-    private List<DebtsEntity> debts = new ArrayList<>();
+    @OneToMany(mappedBy = "creditor", fetch = FetchType.EAGER)
+    private List<DebtsEntity> debtor = new ArrayList<>();
 
-    protected PersonEntity() {}
+    protected CreditorEntity() {}
 
-    public PersonEntity(String firstName, String lastName, String identifier) {
+    public CreditorEntity(String firstName, String lastName, String identifier) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.identifier = identifier;
@@ -59,12 +59,12 @@ public class PersonEntity {
         this.identifier = identifier;
     }
 
-    public List<DebtsEntity> getDebts() {
-        return debts;
+    public List<DebtsEntity> getDebtor() {
+        return debtor;
     }
 
-    public void setDebts(List<DebtsEntity> debts) {
-        this.debts = debts;
+    public void setDebtor(List<DebtsEntity> debtor) {
+        this.debtor = debtor;
     }
 }
 

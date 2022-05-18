@@ -2,7 +2,7 @@ package de.htwberlin.web.api;
 
 import java.util.List;
 
-public class Person {
+public class Creditor {
 
     private long id;
     private String firstName;
@@ -11,7 +11,7 @@ public class Person {
     private List<Long> debtId;
 
 
-    public Person(long id, String firstName, String lastName, String identifier, List<Long> debtId) {
+    public Creditor(long id, String firstName, String lastName, String identifier, List<Long> debtId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

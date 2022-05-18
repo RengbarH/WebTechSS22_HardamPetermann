@@ -4,7 +4,7 @@ import de.htwberlin.web.api.Debts;
 import de.htwberlin.web.api.DebtsManipulationRequest;
 import de.htwberlin.web.persistence.DebtsEntity;
 import de.htwberlin.web.persistence.DebtsRepository;
-import de.htwberlin.web.persistence.PersonRepository;
+import de.htwberlin.web.persistence.CreditorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 public class DebtService {
 
     private final DebtsRepository debtsRepository;
-    private final PersonRepository personRepository;
+    private final CreditorRepository creditorRepository;
 
-    public DebtService(DebtsRepository debtsRepository, PersonRepository personRepository) {
+    public DebtService(DebtsRepository debtsRepository, CreditorRepository creditorRepository) {
         this.debtsRepository = debtsRepository;
-        this.personRepository = personRepository;
+        this.creditorRepository = creditorRepository;
     }
 
 
@@ -30,12 +30,12 @@ public class DebtService {
     }
 
     public Debts create(DebtsManipulationRequest request) {
-        var glaeubiger = personRepository.findById(request.getGlaeubigerId()).orElseThrow();
+        var creditor = creditorRepository.findById(request.getCreditorId()).orElseThrow();
         var debtsEntity = new DebtsEntity(
                 request.getDebtorFirstName(),
                 request.getDebts(),
                 request.getDateOfDebt(),
-                glaeubiger
+                creditor
         );
         debtsEntity = debtsRepository.save(debtsEntity);
         return transformEntity(debtsEntity);
@@ -71,7 +71,7 @@ public class DebtService {
                 debtsEntity.getDebtorFirstName(),
                 debtsEntity.getDebts(),
                 debtsEntity.getDateOfDebt(),
-                debtsEntity.getGlaeubiger().getId()
+                debtsEntity.getCreditor().getId()
         );
     }
 }

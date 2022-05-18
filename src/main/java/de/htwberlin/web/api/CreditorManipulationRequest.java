@@ -1,12 +1,12 @@
 package de.htwberlin.web.api;
 
-public class PersonManipulationRequest {
+public class CreditorManipulationRequest {
     private String firstName;
     private String lastName;
     private String identifier;
 
 
-    public PersonManipulationRequest(String firstName, String lastName, String identifier) {
+    public CreditorManipulationRequest(String firstName, String lastName, String identifier) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.identifier = identifier;

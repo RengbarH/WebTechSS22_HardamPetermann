@@ -23,17 +23,17 @@ public class DebtsEntity {
     private Date dateOfDebt;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "Glaeubiger_id", referencedColumnName = "id")
-    private PersonEntity glaeubiger;
+    @JoinColumn(name = "creditor_id", referencedColumnName = "id")
+    private CreditorEntity creditor;
 
     protected DebtsEntity() {
     }
 
-    public DebtsEntity(String debtorFirstName, BigDecimal debts, Date dateOfDebt, PersonEntity glaeubiger) {
+    public DebtsEntity(String debtorFirstName, BigDecimal debts, Date dateOfDebt, CreditorEntity creditor) {
         this.debtorFirstName = debtorFirstName;
         this.debts = debts;
         this.dateOfDebt = dateOfDebt;
-        this.glaeubiger = glaeubiger;
+        this.creditor = creditor;
     }
 
     public Long getId() {
@@ -64,11 +64,11 @@ public class DebtsEntity {
         this.dateOfDebt = dateOfDebt;
     }
 
-    public PersonEntity getGlaeubiger() {
-        return glaeubiger;
+    public CreditorEntity getCreditor() {
+        return creditor;
     }
 
-    public void setGlaeubiger(PersonEntity glaeubiger) {
-        this.glaeubiger = glaeubiger;
+    public void setCreditor(CreditorEntity glaeubiger) {
+        this.creditor = glaeubiger;
     }
 }

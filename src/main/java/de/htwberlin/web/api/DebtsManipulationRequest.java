@@ -8,14 +8,14 @@ public class DebtsManipulationRequest {
     private String debtorFirstName;
     private BigDecimal debts;
     private Date dateOfDebt;
-    private Long glaeubigerId;
+    private Long creditorId;
 
 
-    public DebtsManipulationRequest(String debtorFirstName, BigDecimal debts, Date dateOfDebt, Long glaeubigerId) {
+    public DebtsManipulationRequest(String debtorFirstName, BigDecimal debts, Date dateOfDebt, Long creditorId) {
         this.debtorFirstName = debtorFirstName;
         this.debts = debts;
         this.dateOfDebt = dateOfDebt;
-        this.glaeubigerId = glaeubigerId;
+        this.creditorId = creditorId;
     }
 
     public String getDebtorFirstName() {
@@ -42,11 +42,11 @@ public class DebtsManipulationRequest {
         this.dateOfDebt = dateOfDebt;
     }
 
-    public Long getGlaeubigerId() {
-        return glaeubigerId;
+    public Long getCreditorId() {
+        return creditorId;
     }
 
-    public void setGlaeubigerId(Long glaeubigerId) {
-        this.glaeubigerId = glaeubigerId;
+    public void setCreditorId(Long creditorId) {
+        this.creditorId = creditorId;
     }
 }
