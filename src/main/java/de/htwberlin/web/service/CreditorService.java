@@ -49,6 +49,7 @@ public class CreditorService {
         var creditorEntity = creditorEntityOptional.get();
         creditorEntity.setFirstName(request.getFirstName());
         creditorEntity.setLastName(request.getLastName());
+        creditorEntity.setIdentifier(request.getIdentifier());
         creditorEntity = creditorRepository.save(creditorEntity);
         return transformEntity(creditorEntity);
     }
