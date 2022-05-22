@@ -3,9 +3,9 @@ package de.htwberlin.web.service;
 
 import de.htwberlin.web.api.Creditor;
 import de.htwberlin.web.api.CreditorManipulationRequest;
-import de.htwberlin.web.persistence.DebtsEntity;
 import de.htwberlin.web.persistence.CreditorEntity;
 import de.htwberlin.web.persistence.CreditorRepository;
+import de.htwberlin.web.persistence.DebtsEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

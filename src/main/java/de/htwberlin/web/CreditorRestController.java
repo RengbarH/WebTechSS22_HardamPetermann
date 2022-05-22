@@ -25,9 +25,9 @@ public class CreditorRestController {
     }
 
     @GetMapping(path = "/api/v1/creditor/{id}")
-    public ResponseEntity<Creditor> fetchCreditorById(@PathVariable long id){
+    public ResponseEntity<Creditor> fetchCreditorById(@PathVariable long id) {
         var creditor = creditorService.findById(id);
-        return creditor != null? ResponseEntity.ok(creditor): ResponseEntity.notFound().build();
+        return creditor != null ? ResponseEntity.ok(creditor) : ResponseEntity.notFound().build();
     }
 
     @PostMapping(path = "/api/v1/creditor")
@@ -40,7 +40,7 @@ public class CreditorRestController {
     @PutMapping(path = "/api/v1/creditor/{id}")
     public ResponseEntity<Creditor> updateCreditor(@PathVariable Long id, @RequestBody CreditorManipulationRequest request) {
         var creditor = creditorService.update(id, request);
-        return creditor != null? ResponseEntity.ok(creditor): ResponseEntity.notFound().build();
+        return creditor != null ? ResponseEntity.ok(creditor) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping(path = "/api/v1/creditor/{id}")
