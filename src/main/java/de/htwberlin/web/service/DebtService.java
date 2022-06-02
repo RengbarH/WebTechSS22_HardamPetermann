@@ -5,6 +5,7 @@ import de.htwberlin.web.api.DebtsManipulationRequest;
 import de.htwberlin.web.persistence.DebtsEntity;
 import de.htwberlin.web.persistence.DebtsRepository;
 import de.htwberlin.web.persistence.CreditorRepository;
+import de.htwberlin.web.persistence.Gender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,12 +31,14 @@ public class DebtService {
     }
 
     public Debts create(DebtsManipulationRequest request) {
+        var gender = Gender.valueOf(request.getGender());
         var creditor = creditorRepository.findById(request.getCreditorId()).orElseThrow();
         var debtsEntity = new DebtsEntity(
                 request.getDebtorFirstName(),
                 request.getDebts(),
                 request.getDateOfDebt(),
-                creditor
+                creditor,
+                gender
         );
         debtsEntity = debtsRepository.save(debtsEntity);
         return transformEntity(debtsEntity);
@@ -49,6 +52,7 @@ public class DebtService {
         var debtsEntity = debtsEntityOptional.get();
         debtsEntity.setDebtorFirstName(request.getDebtorFirstName());
         debtsEntity.setDebts(request.getDebts());
+        debtsEntity.setGender(Gender.valueOf(request.getGender()));
         //debtsEntity.getDateOfDebt(request.getDateOfDebt()); <- das braucht man nicht, da sich das Datum nicht veraendert
         debtsEntity = debtsRepository.save(debtsEntity);
 
@@ -66,12 +70,14 @@ public class DebtService {
     // update by name fehlt
 
     private Debts transformEntity(DebtsEntity debtsEntity) {
+        var gender = debtsEntity.getGender() != null ? debtsEntity.getGender().name() : Gender.UNKNOWN.name();
         return new Debts(
                 debtsEntity.getId(),
                 debtsEntity.getDebtorFirstName(),
                 debtsEntity.getDebts(),
                 debtsEntity.getDateOfDebt(),
-                debtsEntity.getCreditor().getId()
+                debtsEntity.getCreditor().getId(),
+                gender
         );
     }
 }

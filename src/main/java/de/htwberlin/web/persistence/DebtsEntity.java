@@ -22,6 +22,10 @@ public class DebtsEntity {
     @Column(name = "date_of_debt")
     private Date dateOfDebt;
 
+    @Column(name = "gender")
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "creditor_id", referencedColumnName = "id")
     private CreditorEntity creditor;
@@ -29,11 +33,12 @@ public class DebtsEntity {
     protected DebtsEntity() {
     }
 
-    public DebtsEntity(String debtorFirstName, BigDecimal debts, Date dateOfDebt, CreditorEntity creditor) {
+    public DebtsEntity(String debtorFirstName, BigDecimal debts, Date dateOfDebt, CreditorEntity creditor, Gender gender) {
         this.debtorFirstName = debtorFirstName;
         this.debts = debts;
         this.dateOfDebt = dateOfDebt;
         this.creditor = creditor;
+        this.gender = gender;
     }
 
     public Long getId() {
@@ -70,5 +75,13 @@ public class DebtsEntity {
 
     public void setCreditor(CreditorEntity glaeubiger) {
         this.creditor = glaeubiger;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 }

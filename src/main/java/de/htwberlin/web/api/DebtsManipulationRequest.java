@@ -9,13 +9,15 @@ public class DebtsManipulationRequest {
     private BigDecimal debts;
     private Date dateOfDebt;
     private Long creditorId;
+    private String gender;
 
 
-    public DebtsManipulationRequest(String debtorFirstName, BigDecimal debts, Date dateOfDebt, Long creditorId) {
+    public DebtsManipulationRequest(String debtorFirstName, BigDecimal debts, Date dateOfDebt, Long creditorId, String gender) {
         this.debtorFirstName = debtorFirstName;
         this.debts = debts;
         this.dateOfDebt = dateOfDebt;
         this.creditorId = creditorId;
+        this.gender = gender;
     }
 
     public String getDebtorFirstName() {
@@ -48,5 +50,13 @@ public class DebtsManipulationRequest {
 
     public void setCreditorId(Long creditorId) {
         this.creditorId = creditorId;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
