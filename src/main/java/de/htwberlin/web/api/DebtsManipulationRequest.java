@@ -20,6 +20,9 @@ public class DebtsManipulationRequest {
         this.gender = gender;
     }
 
+    public DebtsManipulationRequest() {
+    }
+
     public String getDebtorFirstName() {
         return debtorFirstName;
     }

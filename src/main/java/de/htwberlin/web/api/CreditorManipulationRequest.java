@@ -14,6 +14,9 @@ public class CreditorManipulationRequest {
         this.gender = gender;
     }
 
+    public CreditorManipulationRequest() {
+    }
+
     public String getFirstName() {
         return firstName;
     }
