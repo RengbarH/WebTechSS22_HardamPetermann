@@ -6,6 +6,7 @@ import de.htwberlin.web.api.CreditorManipulationRequest;
 import de.htwberlin.web.persistence.CreditorEntity;
 import de.htwberlin.web.persistence.CreditorRepository;
 import de.htwberlin.web.persistence.DebtsEntity;
+import de.htwberlin.web.persistence.Gender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,8 +35,9 @@ public class CreditorService {
     }
 
     public Creditor create(CreditorManipulationRequest request) {
+        var gender = Gender.valueOf(request.getGender());
         String uuiIdentifier = UUID.randomUUID().toString();
-        var creditorEntity = new CreditorEntity(request.getFirstName(), request.getLastName(), uuiIdentifier);
+        var creditorEntity = new CreditorEntity(request.getFirstName(), request.getLastName(), uuiIdentifier, gender);
         creditorEntity = creditorRepository.save(creditorEntity);
         return transformEntity(creditorEntity);
     }
@@ -50,6 +52,7 @@ public class CreditorService {
         creditorEntity.setFirstName(request.getFirstName());
         creditorEntity.setLastName(request.getLastName());
         creditorEntity.setIdentifier(request.getIdentifier());
+        creditorEntity.setGender(Gender.valueOf(request.getGender()));
         creditorEntity = creditorRepository.save(creditorEntity);
         return transformEntity(creditorEntity);
     }
@@ -64,11 +67,13 @@ public class CreditorService {
     }
 
     private Creditor transformEntity(CreditorEntity creditorEntity) {
+        var gender = creditorEntity.getGender() != null ? creditorEntity.getGender().name() : Gender.UNKNOWN.name();
         return new Creditor(
                 creditorEntity.getId(),
                 creditorEntity.getFirstName(),
                 creditorEntity.getLastName(),
                 creditorEntity.getIdentifier(),
+                gender,
                 creditorEntity.getDebtor().stream().map(DebtsEntity::getId).collect(Collectors.toList())
         );
     }

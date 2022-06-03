@@ -8,15 +8,17 @@ public class Creditor {
     private String firstName;
     private String lastName;
     private String identifier;
-    private List<Long> debtId;
+    private String gender;
+    private List<Long> debtors;
 
 
-    public Creditor(long id, String firstName, String lastName, String identifier, List<Long> debtId) {
+    public Creditor(long id, String firstName, String lastName, String identifier, String gender, List<Long> debtors) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.identifier = identifier;
-        this.debtId = debtId;
+        this.gender = gender;
+        this.debtors = debtors;
     }
 
     public long getId() {
@@ -51,11 +53,19 @@ public class Creditor {
         this.identifier = identifier;
     }
 
-    public List<Long> getDebtId() {
-        return debtId;
+    public List<Long> getDebtors() {
+        return debtors;
     }
 
-    public void setDebtId(List<Long> debtId) {
-        this.debtId = debtId;
+    public void setDebtors(List<Long> debtors) {
+        this.debtors = debtors;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

@@ -20,15 +20,20 @@ public class CreditorEntity {
     @Column(name = "identifier", nullable = false)
     private String identifier;
 
+    @Column(name = "gender")
+    @Enumerated(value = EnumType.STRING)
+    private Gender gender;
+
     @OneToMany(mappedBy = "creditor", fetch = FetchType.EAGER)
     private List<DebtsEntity> debtor = new ArrayList<>();
 
     protected CreditorEntity() {}
 
-    public CreditorEntity(String firstName, String lastName, String identifier) {
+    public CreditorEntity(String firstName, String lastName, String identifier, Gender gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.identifier = identifier;
+        this.gender = gender;
     }
 
     public Long getId() {
@@ -65,6 +70,14 @@ public class CreditorEntity {
 
     public void setDebtor(List<DebtsEntity> debtor) {
         this.debtor = debtor;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }
 
