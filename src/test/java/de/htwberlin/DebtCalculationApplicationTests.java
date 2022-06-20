@@ -12,4 +12,6 @@ class DebtCalculationApplicationTests {
 	void contextLoads() {
 	}
 
+	// TransformerTest geht nicht da diese Klasse nicht vorhanden ist wie im Video
+
 }
