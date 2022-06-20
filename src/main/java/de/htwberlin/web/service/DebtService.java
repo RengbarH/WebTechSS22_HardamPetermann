@@ -1,5 +1,6 @@
 package de.htwberlin.web.service;
 
+import de.htwberlin.web.api.Creditor;
 import de.htwberlin.web.api.Debts;
 import de.htwberlin.web.api.DebtsManipulationRequest;
 import de.htwberlin.web.persistence.DebtsEntity;
@@ -28,6 +29,10 @@ public class DebtService {
         return debts.stream()
                 .map(this::transformEntity)
                 .collect(Collectors.toList());
+    }
+    public Debts findById(long id) {
+        var debtsEntity = debtsRepository.findById(id);
+        return debtsEntity.map(this::transformEntity).orElse(null);
     }
 
     public Debts create(DebtsManipulationRequest request) {
