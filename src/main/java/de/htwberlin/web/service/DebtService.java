@@ -1,6 +1,5 @@
 package de.htwberlin.web.service;
 
-import de.htwberlin.web.api.Creditor;
 import de.htwberlin.web.api.Debts;
 import de.htwberlin.web.api.DebtsManipulationRequest;
 import de.htwberlin.web.persistence.DebtsEntity;
@@ -17,22 +16,24 @@ public class DebtService {
 
     private final DebtsRepository debtsRepository;
     private final CreditorRepository creditorRepository;
+    private final DebtTransformer debtTransformer;
 
-    public DebtService(DebtsRepository debtsRepository, CreditorRepository creditorRepository) {
+    public DebtService(DebtsRepository debtsRepository, CreditorRepository creditorRepository, DebtTransformer debtTransformer) {
         this.debtsRepository = debtsRepository;
         this.creditorRepository = creditorRepository;
+        this.debtTransformer = debtTransformer;
     }
 
 
     public List<Debts> findAll() {
         List<DebtsEntity> debts = debtsRepository.findAll();
         return debts.stream()
-                .map(this::transformEntity)
+                .map(debtTransformer::transformEntity)
                 .collect(Collectors.toList());
     }
     public Debts findById(long id) {
         var debtsEntity = debtsRepository.findById(id);
-        return debtsEntity.map(this::transformEntity).orElse(null);
+        return debtsEntity.map(debtTransformer::transformEntity).orElse(null);
     }
 
     public Debts create(DebtsManipulationRequest request) {
@@ -46,7 +47,7 @@ public class DebtService {
                 gender
         );
         debtsEntity = debtsRepository.save(debtsEntity);
-        return transformEntity(debtsEntity);
+        return debtTransformer.transformEntity(debtsEntity);
     }
 
     public Debts update(Long id, DebtsManipulationRequest request) {
@@ -61,7 +62,7 @@ public class DebtService {
         //debtsEntity.getDateOfDebt(request.getDateOfDebt()); <- das braucht man nicht, da sich das Datum nicht veraendert
         debtsEntity = debtsRepository.save(debtsEntity);
 
-        return transformEntity(debtsEntity);
+        return debtTransformer.transformEntity(debtsEntity);
     }
 
     public boolean deleteById(Long id) {
@@ -71,18 +72,6 @@ public class DebtService {
         debtsRepository.deleteById(id);
         return true;
     }
-
     // update by name fehlt
 
-    private Debts transformEntity(DebtsEntity debtsEntity) {
-        var gender = debtsEntity.getGender() != null ? debtsEntity.getGender().name() : Gender.UNKNOWN.name();
-        return new Debts(
-                debtsEntity.getId(),
-                debtsEntity.getDebtorFirstName(),
-                debtsEntity.getDebts(),
-                debtsEntity.getDateOfDebt(),
-                debtsEntity.getCreditor().getId(),
-                gender
-        );
-    }
 }

@@ -5,7 +5,6 @@ import de.htwberlin.web.api.Creditor;
 import de.htwberlin.web.api.CreditorManipulationRequest;
 import de.htwberlin.web.persistence.CreditorEntity;
 import de.htwberlin.web.persistence.CreditorRepository;
-import de.htwberlin.web.persistence.DebtsEntity;
 import de.htwberlin.web.persistence.Gender;
 import org.springframework.stereotype.Service;
 
@@ -17,21 +16,23 @@ import java.util.stream.Collectors;
 public class CreditorService {
 
     private final CreditorRepository creditorRepository;
+    private final CreditorTransformer creditorTransformer;
 
-    public CreditorService(CreditorRepository creditorRepository) {
+    public CreditorService(CreditorRepository creditorRepository, CreditorTransformer creditorTransformer) {
         this.creditorRepository = creditorRepository;
+        this.creditorTransformer = creditorTransformer;
     }
 
     public List<Creditor> findAll() {
         List<CreditorEntity> creditor = creditorRepository.findAll();
         return creditor.stream()
-                .map(this::transformEntity)
+                .map(creditorTransformer::transformEntity)
                 .collect(Collectors.toList());
     }
 
     public Creditor findById(long id) {
         var creditorEntity = creditorRepository.findById(id);
-        return creditorEntity.map(this::transformEntity).orElse(null);
+        return creditorEntity.map(creditorTransformer::transformEntity).orElse(null);
     }
 
     public Creditor create(CreditorManipulationRequest request) {
@@ -39,7 +40,7 @@ public class CreditorService {
         String uuiIdentifier = UUID.randomUUID().toString();
         var creditorEntity = new CreditorEntity(request.getFirstName(), request.getLastName(), uuiIdentifier, gender);
         creditorEntity = creditorRepository.save(creditorEntity);
-        return transformEntity(creditorEntity);
+        return creditorTransformer.transformEntity(creditorEntity);
     }
 
     public Creditor update(Long id, CreditorManipulationRequest request) {
@@ -54,7 +55,7 @@ public class CreditorService {
         creditorEntity.setIdentifier(request.getIdentifier());
         creditorEntity.setGender(Gender.valueOf(request.getGender()));
         creditorEntity = creditorRepository.save(creditorEntity);
-        return transformEntity(creditorEntity);
+        return creditorTransformer.transformEntity(creditorEntity);
     }
 
     public boolean deleteById(Long id) {
@@ -64,17 +65,5 @@ public class CreditorService {
 
         creditorRepository.deleteById(id);
         return true;
-    }
-
-    private Creditor transformEntity(CreditorEntity creditorEntity) {
-        var gender = creditorEntity.getGender() != null ? creditorEntity.getGender().name() : Gender.UNKNOWN.name();
-        return new Creditor(
-                creditorEntity.getId(),
-                creditorEntity.getFirstName(),
-                creditorEntity.getLastName(),
-                creditorEntity.getIdentifier(),
-                gender,
-                creditorEntity.getDebtor().stream().map(DebtsEntity::getId).collect(Collectors.toList())
-        );
     }
 }
