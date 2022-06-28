@@ -1,5 +1,7 @@
 package de.htwberlin.service;
 
+import de.htwberlin.web.api.Creditor;
+import de.htwberlin.web.api.CreditorManipulationRequest;
 import de.htwberlin.web.persistence.CreditorRepository;
 import de.htwberlin.web.service.CreditorService;
 import org.assertj.core.api.WithAssertions;
@@ -22,6 +24,9 @@ public class CreditorServiceTest implements WithAssertions {
 
     @InjectMocks
     private CreditorService underTest;
+
+    @Mock
+    private CreditorManipulationRequest manipulationRequest;
 
     @Test
     @DisplayName("should return true if delete was successful")

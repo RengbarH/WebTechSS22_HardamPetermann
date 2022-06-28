@@ -30,7 +30,7 @@ public class DebtsEntity {
     @JoinColumn(name = "creditor_id", referencedColumnName = "id")
     private CreditorEntity creditor;
 
-    protected DebtsEntity() {
+    public DebtsEntity() {
     }
 
     public DebtsEntity(String debtorFirstName, BigDecimal debts, Date dateOfDebt, CreditorEntity creditor, Gender gender) {
