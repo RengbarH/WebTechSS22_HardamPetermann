@@ -15,7 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("*")
                 .allowedOrigins(
                         "http://localhost:3000/",
-                        "https://debtcalculator-frontend.herokuapp.com"
+                        "https://debtcalculator-frontend.herokuapp.com",
+                        "https://jerk-debt-application-frontend.herokuapp.com"
                 );
     }
 }
