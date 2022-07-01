@@ -2,12 +2,13 @@ package de.htwberlin.web.service;
 
 import de.htwberlin.web.api.Debts;
 import de.htwberlin.web.api.DebtsManipulationRequest;
+import de.htwberlin.web.persistence.CreditorRepository;
 import de.htwberlin.web.persistence.DebtsEntity;
 import de.htwberlin.web.persistence.DebtsRepository;
-import de.htwberlin.web.persistence.CreditorRepository;
 import de.htwberlin.web.persistence.Gender;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +32,23 @@ public class DebtService {
                 .map(debtTransformer::transformEntity)
                 .collect(Collectors.toList());
     }
+
     public Debts findById(long id) {
         var debtsEntity = debtsRepository.findById(id);
         return debtsEntity.map(debtTransformer::transformEntity).orElse(null);
+    }
+
+    public List<Debts> findByCreditor(long creditorId) {
+        List<DebtsEntity> creditorListEntity = new ArrayList<>();
+        List<DebtsEntity> debts = debtsRepository.findAll();
+        for (DebtsEntity debt : debts) {
+            if (debt.getCreditor().getId() == creditorId) {
+                creditorListEntity.add(debt);
+            }
+        }
+        return creditorListEntity.stream()
+                .map(debtTransformer::transformEntity)
+                .collect(Collectors.toList());
     }
 
     public Debts create(DebtsManipulationRequest request) {

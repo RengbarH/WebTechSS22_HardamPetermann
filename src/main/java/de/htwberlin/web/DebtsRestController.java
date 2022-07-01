@@ -24,6 +24,11 @@ public class DebtsRestController {
         return ResponseEntity.ok(debtService.findAll());
     }
 
+    @GetMapping(path = "api/v1/debts/{id}")
+    public ResponseEntity<List<Debts>> fetchDebtsSorted(@PathVariable Long id){
+        return ResponseEntity.ok(debtService.findByCreditor(id));
+    }
+
     @PostMapping(path = "/api/v1/debts")
     public ResponseEntity<Void> createDebt(@RequestBody DebtsManipulationRequest request) throws URISyntaxException {
         var debt = debtService.create(request);
