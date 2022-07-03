@@ -1,14 +1,22 @@
 package de.htwberlin.web.api;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class DebtsManipulationRequest {
+    @NotBlank(message = "Bitte dieses Feld nicht leer lassen.")
 
     private String debtorFirstName;
+    @Positive(message = "Gib bitte eine Zahl größer 0 ein")
     private BigDecimal debts;
+
     private Date dateOfDebt;
     private Long creditorId;
+    @Pattern(regexp = "MALE|FEMALE|DIVERSE|UNKNOWN",
+            message = "Bitte ein Geschlecht auswählen.")
     private String gender;
 
 

@@ -6,6 +6,7 @@ import de.htwberlin.web.api.CreditorManipulationRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -31,7 +32,7 @@ public class CreditorRestController {
     }
 
     @PostMapping(path = "/api/v1/creditor")
-    public ResponseEntity<Creditor> createCreditor(@RequestBody CreditorManipulationRequest request) throws URISyntaxException {
+    public ResponseEntity<Creditor> createCreditor(@Valid @RequestBody CreditorManipulationRequest request) throws URISyntaxException {
         var creditor = creditorService.create(request);
         URI uri = new URI("/api/v1/creditor/" + creditor.getId());
         return ResponseEntity.created(uri).body(creditor);

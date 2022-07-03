@@ -6,6 +6,7 @@ import de.htwberlin.web.service.DebtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -30,7 +31,7 @@ public class DebtsRestController {
     }
 
     @PostMapping(path = "/api/v1/debts")
-    public ResponseEntity<Void> createDebt(@RequestBody DebtsManipulationRequest request) throws URISyntaxException {
+    public ResponseEntity<Void> createDebt(@Valid @RequestBody DebtsManipulationRequest request) throws URISyntaxException {
         var debt = debtService.create(request);
         URI uri = new URI("/api/v1/debts" + debt.getId());
         return ResponseEntity.created(uri).build();

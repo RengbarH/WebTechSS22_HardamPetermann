@@ -1,9 +1,18 @@
 package de.htwberlin.web.api;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class CreditorManipulationRequest {
+    @NotBlank(message = "Bitte dieses Feld nicht leer lassen.")
     private String firstName;
+
+    @NotBlank(message = "Bitte dieses Feld nicht leer lassen.")
     private String lastName;
     private String identifier;
+
+    @Pattern(regexp = "MALE|FEMALE|DIVERSE|UNKNOWN",
+    message = "Bitte ein Geschlecht auswählen.")
     private String gender;
 
 
