@@ -52,7 +52,7 @@ public class CreditorService {
         var creditorEntity = creditorEntityOptional.get();
         creditorEntity.setFirstName(request.getFirstName());
         creditorEntity.setLastName(request.getLastName());
-        creditorEntity.setIdentifier(request.getIdentifier());
+//        creditorEntity.setIdentifier(request.getIdentifier());
         creditorEntity.setGender(Gender.valueOf(request.getGender()));
         creditorEntity = creditorRepository.save(creditorEntity);
         return creditorTransformer.transformEntity(creditorEntity);
